@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; manifest-src 'self'; img-src 'self' data:; font-src 'self' data:;"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#5772f5" />
+    <title>Dashboard — Ai-Cloud</title>
+    <link rel="icon" href="{{CS_STATIC_BASE}}/src/browser/media/favicon-dark-support.svg" />
+    <link rel="alternate icon" href="{{CS_STATIC_BASE}}/src/browser/media/favicon.ico" />
+    <link rel="manifest" href="{{BASE}}/manifest.json" crossorigin="use-credentials" />
+    <link rel="apple-touch-icon" sizes="192x192" href="{{CS_STATIC_BASE}}/src/browser/media/pwa-icon-192.png" />
+    <link href="{{CS_STATIC_BASE}}/src/browser/pages/global.css" rel="stylesheet" />
+    <link href="{{CS_STATIC_BASE}}/src/browser/pages/dashboard.css" rel="stylesheet" />
+    <meta id="coder-options" data-settings="{{OPTIONS}}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Navigation Bar -->
+      <nav class="nav-bar" role="navigation" aria-label="Main navigation">
+        <a class="nav-logo" href="{{BASE}}/" aria-label="Ai-Cloud Home">
+          <div class="nav-logo-icon" aria-hidden="true">AI</div>
+          <span class="nav-logo-text">Ai-Cloud</span>
+        </a>
+
+        <div class="nav-tabs" role="tablist" aria-label="Navigation tabs">
+          <a href="{{BASE}}/" class="nav-tab" role="tab" data-tab="home" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🏠</span> Home
+          </a>
+          <a
+            href="{{BASE}}/dashboard"
+            class="nav-tab active"
+            role="tab"
+            aria-selected="true"
+            data-tab="dashboard"
+            tabindex="0"
+          >
+            <span class="tab-icon" aria-hidden="true">📊</span> Dashboard
+          </a>
+          <a href="{{BASE}}/dashboard/users" class="nav-tab" role="tab" data-tab="users" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">👥</span> Users
+          </a>
+          <a href="{{BASE}}/dashboard/admin" class="nav-tab" role="tab" data-tab="admin" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">⚙️</span> Admin
+          </a>
+          <a href="{{BASE}}/dashboard/developer" class="nav-tab" role="tab" data-tab="developer" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🛠️</span> Developer
+          </a>
+          <a href="{{BASE}}/dashboard/settings" class="nav-tab" role="tab" data-tab="settings" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🔧</span> Settings
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="notif-btn" aria-label="Notifications" title="Notifications">
+            🔔
+            <span class="notif-badge" aria-hidden="true"></span>
+          </button>
+          <div class="nav-avatar" role="button" tabindex="0" aria-label="User account" title="Account">U</div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content" role="main">
+        <header class="page-header">
+          <h1 class="page-title">User Dashboard</h1>
+          <p class="page-subtitle">Welcome back! Here's an overview of your activity.</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-grid" role="region" aria-label="Key metrics">
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🖥️</div>
+            <div class="stat-label">Active Sessions</div>
+            <div class="stat-value">1</div>
+            <div class="stat-delta">↑ Current</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🧩</div>
+            <div class="stat-label">Extensions Installed</div>
+            <div class="stat-value">12</div>
+            <div class="stat-delta">↑ 2 this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">📁</div>
+            <div class="stat-label">Workspaces</div>
+            <div class="stat-value">4</div>
+            <div class="stat-delta">↑ 1 new</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">⏱️</div>
+            <div class="stat-label">Session Time (h)</div>
+            <div class="stat-value">38</div>
+            <div class="stat-delta">↑ 6h this week</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Recent Activity -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">📋</span> Recent Activity</h2>
+              <button class="widget-action" type="button">View all</button>
+            </div>
+            <div class="widget-body">
+              <ul class="activity-feed" role="feed" aria-label="Recent activity">
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">Opened workspace <strong>my-project</strong></div>
+                    <div class="activity-time">2 minutes ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">Installed extension <strong>GitLens</strong></div>
+                    <div class="activity-time">1 hour ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">Updated settings for <strong>Python</strong></div>
+                    <div class="activity-time">3 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">Logged in from <strong>Chrome / macOS</strong></div>
+                    <div class="activity-time">Yesterday at 9:41 AM</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Account Overview -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">👤</span> Account Overview</h2>
+              <a class="widget-action" href="{{BASE}}/dashboard/settings">Edit</a>
+            </div>
+            <div class="widget-body">
+              <table class="data-table" aria-label="Account details">
+                <tbody>
+                  <tr>
+                    <td style="color: var(--text-muted); width: 120px">Role</td>
+                    <td><span class="badge badge-blue">User</span></td>
+                  </tr>
+                  <tr>
+                    <td style="color: var(--text-muted)">Status</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td style="color: var(--text-muted)">Auth</td>
+                    <td>Password</td>
+                  </tr>
+                  <tr>
+                    <td style="color: var(--text-muted)">Server</td>
+                    <td>Ai-Cloud v1.0.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">🔔</span> Notifications</h2>
+              <button class="widget-action" type="button">Mark all read</button>
+            </div>
+            <div class="widget-body">
+              <ul class="activity-feed" role="list" aria-label="Notifications">
+                <li class="activity-item">
+                  <div class="activity-dot" style="background: #34d399" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">System update available</div>
+                    <div class="activity-time">5 minutes ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" style="background: #fbbf24" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">Extension <strong>ESLint</strong> has an update</div>
+                    <div class="activity-time">2 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text">New workspace template available</div>
+                    <div class="activity-time">Yesterday</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Resource Usage -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">📈</span> Resource Usage</h2>
+            </div>
+            <div class="widget-body">
+              <div style="display: flex; flex-direction: column; gap: 16px">
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem">
+                    <span>CPU</span><span style="color: var(--text-muted)">24%</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="24"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="CPU usage 24%"
+                  >
+                    <div class="progress-bar-fill" style="width: 24%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem">
+                    <span>Memory</span><span style="color: var(--text-muted)">61%</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="61"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="Memory usage 61%"
+                  >
+                    <div class="progress-bar-fill" style="width: 61%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem">
+                    <span>Disk</span><span style="color: var(--text-muted)">38%</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="38"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="Disk usage 38%"
+                  >
+                    <div class="progress-bar-fill" style="width: 38%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Keyboard navigation for tabs
+      document.querySelectorAll(".nav-tab").forEach(function (tab) {
+        tab.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            window.location.href = tab.href
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
