@@ -1,12 +1,23 @@
-# code-server
+# Ai-Cloud
 
 [!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/coder/code-server/discussions) [!["Join us on Slack"](https://img.shields.io/badge/join-us%20on%20slack-gray.svg?longCache=true&logo=slack&colorB=brightgreen)](https://coder.com/community) [![Twitter Follow](https://img.shields.io/twitter/follow/CoderHQ?label=%40CoderHQ&style=social)](https://twitter.com/coderhq) [![Discord](https://img.shields.io/discord/747933592273027093)](https://discord.com/invite/coder) [![codecov](https://codecov.io/gh/coder/code-server/branch/main/graph/badge.svg?token=5iM9farjnC)](https://codecov.io/gh/coder/code-server) [![See latest](https://img.shields.io/static/v1?label=Docs&message=see%20latest&color=blue)](https://coder.com/docs/code-server/latest)
 
 Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and
-access it in the browser.
+access it in the browser — now with an enterprise Neo-Glow UI and built-in
+dashboards for users, admins, and developers.
 
 ![Screenshot](./assets/screenshot-1.png)
 ![Screenshot](./assets/screenshot-2.png)
+
+## UI Preview
+
+### User Dashboard
+
+![User Dashboard](assets/ui/user-dashboard.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](assets/ui/admin-dashboard.png)
 
 ## Highlights
 
@@ -14,6 +25,9 @@ access it in the browser.
 - Use cloud servers to speed up tests, compilations, downloads, and more
 - Preserve battery life when you're on the go; all intensive tasks run on your
   server
+- **Enterprise dashboards** — User, Admin, and Developer views at `/dashboard`
+- **Neo-Glow UI** — modern gradient design with dark-mode support
+- **RBAC navigation** — tab-based menu with route-based access control
 
 ## Requirements
 
@@ -60,6 +74,43 @@ code-server.
 
 We also have an in-depth [setup and
 configuration](https://coder.com/docs/code-server/latest/guide) guide.
+
+## Enterprise Dashboards
+
+After starting code-server and logging in, the following dashboard routes are
+available:
+
+| Path                   | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `/dashboard`           | User Dashboard — activity, metrics, notifications |
+| `/dashboard/admin`     | Admin Dashboard — users, RBAC, audit log, health  |
+| `/dashboard/developer` | Developer Dashboard — API monitoring, logs, env   |
+| `/dashboard/settings`  | Settings — user account settings                  |
+| `/healthz`             | Health check endpoint                             |
+
+All dashboard routes require authentication. Access is enforced by the
+`ensureAuthenticated` middleware.
+
+## Environment Configuration
+
+Copy `.env.example` to `.env` and set your values before starting the server:
+
+```bash
+cp .env.example .env
+# Edit .env — set PASSWORD or HASHED_PASSWORD at minimum
+code-server --config ~/.config/code-server/config.yaml
+```
+
+Key environment variables:
+
+| Variable          | Default | Description                           |
+| ----------------- | ------- | ------------------------------------- |
+| `PORT`            | `8080`  | Server listen port                    |
+| `PASSWORD`        | —       | Plain-text auth password              |
+| `HASHED_PASSWORD` | —       | SHA-256 hashed password (recommended) |
+| `CERT`            | —       | Path to TLS certificate               |
+| `CERT_KEY`        | —       | Path to TLS private key               |
+| `LOG_LEVEL`       | `info`  | Log verbosity                         |
 
 ## Questions?
 

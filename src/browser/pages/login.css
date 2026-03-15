@@ -1,7 +1,31 @@
+/* Neo-Glow Login Page */
 body {
   min-height: 568px;
   min-width: 320px;
   overflow: auto;
+}
+
+/* Animated gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(87, 114, 245, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 70% 80%, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.center-container {
+  position: relative;
+  z-index: 1;
+}
+
+.card-box {
+  animation:
+    fade-in 0.5s ease forwards,
+    glow-pulse 3s ease-in-out 0.6s infinite;
 }
 
 .login-form {
@@ -9,12 +33,14 @@ body {
   flex-direction: column;
   flex: 1;
   justify-content: center;
+  gap: 12px;
 }
 
 .login-form > .field {
   display: flex;
   flex-direction: row;
   width: 100%;
+  gap: 12px;
 }
 
 @media (max-width: 600px) {
@@ -24,27 +50,37 @@ body {
 }
 
 .login-form > .error {
-  color: red;
-  margin-top: 16px;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  animation: fade-in 0.25s ease;
 }
 
 .login-form > .field > .password {
-  background-color: rgb(244, 247, 252);
-  background-color: light-dark(rgb(244, 247, 252), #374151);
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  border: 1px solid light-dark(#ddd, #4b5563);
+  background: var(--bg-page);
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
   box-sizing: border-box;
+  color: var(--text-primary);
   flex: 1;
   padding: 16px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .login-form > .field > .password::placeholder {
-  color: rgb(148 163 184);
+  color: var(--text-muted);
 }
 
 .login-form > .field > .password:focus {
-  outline: 2px solid rgb(63, 131, 248);
+  outline: none;
+  border-color: var(--ng-accent);
+  box-shadow: 0 0 0 3px var(--ng-glow-soft);
 }
 
 .login-form > .user {
@@ -52,13 +88,13 @@ body {
 }
 
 .login-form > .field > .submit {
-  margin-left: 20px;
+  white-space: nowrap;
+  min-width: 100px;
 }
 
 @media (max-width: 600px) {
   .login-form > .field > .submit {
-    margin-left: 0px;
-    margin-top: 16px;
+    width: 100%;
   }
 }
 

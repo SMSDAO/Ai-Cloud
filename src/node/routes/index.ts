@@ -16,6 +16,7 @@ import { CoderSettings, SettingsProvider } from "../settings"
 import { UpdateProvider } from "../update"
 import { getMediaMime, paths } from "../util"
 import type { WebsocketRequest } from "../wsRouter"
+import * as dashboard from "./dashboard"
 import * as domainProxy from "./domainProxy"
 import { errorHandler, wsErrorHandler } from "./errors"
 import * as health from "./health"
@@ -163,6 +164,9 @@ export const register = async (
   }
 
   app.router.use("/update", update.router)
+
+  // Enterprise dashboards — authentication enforced inside the router.
+  app.router.use("/dashboard", dashboard.router)
 
   // For historic reasons we also load at /vscode because the root was replaced
   // by a plugin in v1 of Coder.  The plugin system (which was for internal use

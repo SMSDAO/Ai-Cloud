@@ -22,6 +22,48 @@ Code v99.99.999
 
 ## Unreleased
 
+## [1.0.0] - 2026-03-14
+
+Production Ready Enterprise Release
+
+### Added
+
+- **Neo-Glow UI Design System** — modern CSS design system with soft glow
+  highlights, gradient effects, flash animations, and smooth transitions for
+  the login page and all enterprise dashboard pages.
+- **Enterprise Dashboard** (`/dashboard`) — user account overview, activity
+  metrics, resource usage, and notification feed.
+- **Admin Dashboard** (`/dashboard/admin`) — system overview, user management
+  table, RBAC role matrix, audit log feed, and live system health indicators.
+- **Developer Dashboard** (`/dashboard/developer`) — API endpoint monitoring,
+  live log stream viewer, environment variable browser, and deployment
+  diagnostics feed.
+- **Tab-based navigation** — responsive, keyboard-navigable nav bar with tabs:
+  Home, Dashboard, Users, Admin, Developer, Settings; adapts to mobile
+  viewport.
+- **`/dashboard` route** — Express router at `src/node/routes/dashboard.ts`
+  serving all dashboard pages with authentication enforcement.
+- **`.env.example`** — environment configuration template covering server,
+  auth, TLS, proxy, logging, and observability settings.
+- **PWA `theme-color` meta tag** on all dashboard pages.
+- **ARIA roles and labels** on all interactive and landmark elements for
+  accessibility compliance.
+
+### Changed
+
+- `global.css` — migrated to CSS custom property tokens for dark/light mode,
+  added Neo-Glow animations (`glow-pulse`, `fade-in`), gradient text header,
+  and polished card shadow system.
+- `login.css` — modernised form layout: focus ring, error styling, animated
+  radial background, gap-based spacing; removed legacy `margin-left` approach.
+
+### Security
+
+- Dashboard routes enforce authentication via `ensureAuthenticated` middleware;
+  unauthenticated requests are redirected to `/login`.
+- All dashboard HTML pages use a strict `Content-Security-Policy` header.
+- Login error messages are HTML-escaped to prevent XSS injection.
+
 ## [4.109.5](https://github.com/coder/code-server/releases/tag/v4.109.5) - 2026-03-02
 
 Code v1.109.5

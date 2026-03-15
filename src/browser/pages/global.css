@@ -1,5 +1,65 @@
+/* Neo-Glow Design System — Ai-Cloud Enterprise */
 :root {
   color-scheme: light dark;
+
+  /* Neo-Glow colour palette */
+  --ng-accent: #5772f5;
+  --ng-accent-alt: #818cf8;
+  --ng-glow: rgba(87, 114, 245, 0.45);
+  --ng-glow-soft: rgba(87, 114, 245, 0.18);
+  --ng-gradient: linear-gradient(135deg, #5772f5 0%, #818cf8 100%);
+  --ng-gradient-subtle: linear-gradient(135deg, rgba(87, 114, 245, 0.12) 0%, rgba(129, 140, 248, 0.08) 100%);
+
+  /* Light-mode tokens */
+  --bg-page: rgb(244, 247, 252);
+  --bg-card: rgb(250, 253, 255);
+  --bg-nav: rgba(250, 253, 255, 0.92);
+  --bg-log-viewer: #0d1117;
+  --border-subtle: #e2e8f0;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --text-log: #e6edf3;
+  --shadow-card: 0 4px 24px rgba(87, 114, 245, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 20px var(--ng-glow-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #0d1117;
+    --bg-card: #161b22;
+    --bg-nav: rgba(22, 27, 34, 0.95);
+    --border-subtle: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.6), 0 0 1px rgba(87, 114, 245, 0.3);
+    --shadow-glow: 0 0 28px var(--ng-glow);
+  }
+}
+
+/* Smooth-flash animation for glow pulse */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: var(--shadow-glow);
+  }
+  50% {
+    box-shadow:
+      0 0 36px var(--ng-glow),
+      0 0 8px var(--ng-glow-soft);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 html,
@@ -10,15 +70,16 @@ body,
 }
 
 body {
-  background: rgb(244, 247, 252);
-  background: light-dark(rgb(244, 247, 252), #111827);
-  color: #111;
-  color: light-dark(#111, #ddd);
+  background: var(--bg-page);
+  color: var(--text-primary);
   margin: 0;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
   overflow: hidden;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 input,
@@ -29,17 +90,31 @@ button {
 }
 
 .-button {
-  background-color: rgb(87, 114, 245);
-  background-color: light-dark(rgb(87, 114, 245), rgb(26, 86, 219));
-  border-radius: 5px;
+  background: var(--ng-gradient);
+  border-radius: 6px;
   border: none;
+  box-shadow: 0 2px 8px var(--ng-glow-soft);
   box-sizing: border-box;
   color: white;
-  color: light-dark(white, white);
   cursor: pointer;
   padding: 18px 20px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-decoration: none;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.15s ease,
+    opacity 0.2s ease;
+}
+
+.-button:hover {
+  box-shadow: 0 4px 16px var(--ng-glow);
+  transform: translateY(-1px);
+}
+
+.-button:active {
+  transform: translateY(0);
+  opacity: 0.9;
 }
 
 .center-container {
@@ -54,32 +129,33 @@ button {
 }
 
 .card-box {
-  background-color: rgb(250, 253, 258);
-  background-color: light-dark(rgb(250, 253, 258), #1f2937);
-  border-radius: 5px;
-  box-shadow:
-    light-dark(rgba(60, 66, 87, 0.117647), rgba(10, 10, 10, 0.617647)) 0px 7px 14px 0px,
-    rgba(0, 0, 0, 0.117647) 0px 3px 6px 0px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
   max-width: 650px;
   width: 100%;
+  animation: fade-in 0.4s ease forwards;
 }
 
 .card-box > .header {
-  border-bottom: 1px solid #ddd;
-  border-bottom: 1px solid light-dark(#ddd, #111827);
-  color: #444;
-  color: light-dark(#444, #fff);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
   padding: 30px;
 }
 
 .card-box > .header > .main {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--ng-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .card-box > .header > .sub {
-  color: #555;
-  color: light-dark(#555, #9ca3af);
+  color: var(--text-secondary);
   margin-top: 10px;
 }
 

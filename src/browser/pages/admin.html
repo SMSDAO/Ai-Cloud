@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; manifest-src 'self'; img-src 'self' data:; font-src 'self' data:;"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#5772f5" />
+    <title>Admin Dashboard — Ai-Cloud</title>
+    <link rel="icon" href="{{CS_STATIC_BASE}}/src/browser/media/favicon-dark-support.svg" />
+    <link rel="alternate icon" href="{{CS_STATIC_BASE}}/src/browser/media/favicon.ico" />
+    <link rel="manifest" href="{{BASE}}/manifest.json" crossorigin="use-credentials" />
+    <link rel="apple-touch-icon" sizes="192x192" href="{{CS_STATIC_BASE}}/src/browser/media/pwa-icon-192.png" />
+    <link href="{{CS_STATIC_BASE}}/src/browser/pages/global.css" rel="stylesheet" />
+    <link href="{{CS_STATIC_BASE}}/src/browser/pages/dashboard.css" rel="stylesheet" />
+    <meta id="coder-options" data-settings="{{OPTIONS}}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Navigation Bar -->
+      <nav class="nav-bar" role="navigation" aria-label="Main navigation">
+        <a class="nav-logo" href="{{BASE}}/" aria-label="Ai-Cloud Home">
+          <div class="nav-logo-icon" aria-hidden="true">AI</div>
+          <span class="nav-logo-text">Ai-Cloud</span>
+        </a>
+
+        <div class="nav-tabs" role="tablist" aria-label="Navigation tabs">
+          <a href="{{BASE}}/" class="nav-tab" role="tab" data-tab="home" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🏠</span> Home
+          </a>
+          <a href="{{BASE}}/dashboard" class="nav-tab" role="tab" data-tab="dashboard" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">📊</span> Dashboard
+          </a>
+          <a href="{{BASE}}/dashboard/users" class="nav-tab" role="tab" data-tab="users" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">👥</span> Users
+          </a>
+          <a
+            href="{{BASE}}/dashboard/admin"
+            class="nav-tab active"
+            role="tab"
+            aria-selected="true"
+            data-tab="admin"
+            tabindex="0"
+          >
+            <span class="tab-icon" aria-hidden="true">⚙️</span> Admin
+          </a>
+          <a href="{{BASE}}/dashboard/developer" class="nav-tab" role="tab" data-tab="developer" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🛠️</span> Developer
+          </a>
+          <a href="{{BASE}}/dashboard/settings" class="nav-tab" role="tab" data-tab="settings" tabindex="0">
+            <span class="tab-icon" aria-hidden="true">🔧</span> Settings
+          </a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="notif-btn" aria-label="Notifications" title="Notifications">
+            🔔
+            <span class="notif-badge" aria-hidden="true"></span>
+          </button>
+          <div
+            class="nav-avatar"
+            role="button"
+            tabindex="0"
+            aria-label="Admin account"
+            title="Admin account"
+            style="background: linear-gradient(135deg, #f87171, #fb923c)"
+          >
+            A
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content" role="main">
+        <header class="page-header">
+          <h1 class="page-title">Admin Dashboard</h1>
+          <p class="page-subtitle">System overview, user management, and configuration.</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-grid" role="region" aria-label="System statistics">
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">👥</div>
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value">24</div>
+            <div class="stat-delta">↑ 3 this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🟢</div>
+            <div class="stat-label">Active Sessions</div>
+            <div class="stat-value">7</div>
+            <div class="stat-delta">↑ Online now</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🛡️</div>
+            <div class="stat-label">Security Alerts</div>
+            <div class="stat-value">0</div>
+            <div class="stat-delta">✓ All clear</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">⚡</div>
+            <div class="stat-label">API Requests/h</div>
+            <div class="stat-value">1.2k</div>
+            <div class="stat-delta">↑ Normal load</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- User Management -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">👥</span> User Management</h2>
+              <button class="widget-action" type="button">+ Invite User</button>
+            </div>
+            <div class="widget-body">
+              <table class="data-table" aria-label="User list">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Last Active</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>alice@example.com</td>
+                    <td><span class="badge badge-red">Admin</span></td>
+                    <td><span class="badge badge-green">Online</span></td>
+                    <td>Now</td>
+                  </tr>
+                  <tr>
+                    <td>bob@example.com</td>
+                    <td><span class="badge badge-blue">Developer</span></td>
+                    <td><span class="badge badge-green">Online</span></td>
+                    <td>5m ago</td>
+                  </tr>
+                  <tr>
+                    <td>carol@example.com</td>
+                    <td><span class="badge badge-amber">Auditor</span></td>
+                    <td><span class="badge badge-amber">Away</span></td>
+                    <td>1h ago</td>
+                  </tr>
+                  <tr>
+                    <td>dave@example.com</td>
+                    <td>
+                      <span
+                        class="badge badge-blue"
+                        style="background: rgba(129, 140, 248, 0.12); color: var(--ng-accent-alt)"
+                        >User</span
+                      >
+                    </td>
+                    <td>
+                      <span
+                        class="badge"
+                        style="
+                          background: rgba(110, 118, 129, 0.1);
+                          color: var(--text-muted);
+                          border-color: rgba(110, 118, 129, 0.2);
+                        "
+                        >Offline</span
+                      >
+                    </td>
+                    <td>2d ago</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Role &amp; Permission Matrix -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">🛡️</span> RBAC Roles</h2>
+              <button class="widget-action" type="button">Manage</button>
+            </div>
+            <div class="widget-body">
+              <table class="data-table" aria-label="Role permissions">
+                <thead>
+                  <tr>
+                    <th scope="col">Role</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">Permissions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-red">Admin</span></td>
+                    <td>2</td>
+                    <td>Full access</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-blue">Developer</span></td>
+                    <td>8</td>
+                    <td>API + Deploy + Logs</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-amber">Auditor</span></td>
+                    <td>3</td>
+                    <td>Read-only + Logs</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span
+                        class="badge"
+                        style="
+                          background: rgba(129, 140, 248, 0.12);
+                          color: var(--ng-accent-alt);
+                          border: 1px solid rgba(87, 114, 245, 0.2);
+                        "
+                        >User</span
+                      >
+                    </td>
+                    <td>11</td>
+                    <td>IDE + Workspace</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Audit Log -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">📜</span> Audit Log</h2>
+              <button class="widget-action" type="button">Export</button>
+            </div>
+            <div class="widget-body">
+              <ul class="activity-feed" role="feed" aria-label="Audit log">
+                <li class="activity-item">
+                  <div class="activity-dot" style="background: #f87171" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text"><strong>alice</strong> updated RBAC role for <strong>bob</strong></div>
+                    <div class="activity-time">10 minutes ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" style="background: #fbbf24" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text"><strong>System</strong> rotated API token</div>
+                    <div class="activity-time">1 hour ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text"><strong>carol</strong> exported audit log</div>
+                    <div class="activity-time">3 hours ago</div>
+                  </div>
+                </li>
+                <li class="activity-item">
+                  <div class="activity-dot" style="background: #34d399" aria-hidden="true"></div>
+                  <div>
+                    <div class="activity-text"><strong>System</strong> auto-backup completed</div>
+                    <div class="activity-time">6 hours ago</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- System Health -->
+          <div class="widget">
+            <div class="widget-header">
+              <h2 class="widget-title"><span class="icon" aria-hidden="true">💚</span> System Health</h2>
+              <a class="widget-action" href="{{BASE}}/healthz">Live</a>
+            </div>
+            <div class="widget-body">
+              <div style="display: flex; flex-direction: column; gap: 16px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 6px;
+                      font-size: 0.875rem;
+                    "
+                  >
+                    <span>API Server</span><span class="badge badge-green">Healthy</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="99"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="API server uptime 99%"
+                  >
+                    <div class="progress-bar-fill" style="width: 99%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 6px;
+                      font-size: 0.875rem;
+                    "
+                  >
+                    <span>VS Code Server</span><span class="badge badge-green">Healthy</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="100"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="VS Code server 100% uptime"
+                  >
+                    <div class="progress-bar-fill" style="width: 100%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 6px;
+                      font-size: 0.875rem;
+                    "
+                  >
+                    <span>Rate Limiter</span><span class="badge badge-green">Active</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="12"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="Rate limiter 12% capacity"
+                  >
+                    <div
+                      class="progress-bar-fill"
+                      style="width: 12%; background: linear-gradient(135deg, #34d399, #059669)"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 6px;
+                      font-size: 0.875rem;
+                    "
+                  >
+                    <span>Disk Storage</span><span class="badge badge-amber">38% used</span>
+                  </div>
+                  <div
+                    class="progress-bar-wrap"
+                    role="progressbar"
+                    aria-valuenow="38"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="Disk storage 38% used"
+                  >
+                    <div
+                      class="progress-bar-fill"
+                      style="width: 38%; background: linear-gradient(135deg, #fbbf24, #f59e0b)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.querySelectorAll(".nav-tab").forEach(function (tab) {
+        tab.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault()
+            window.location.href = tab.href
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
