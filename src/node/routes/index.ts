@@ -65,9 +65,9 @@ export const register = async (
   const cookieSessionName = getCookieSessionName(args["cookie-suffix"])
 
   const common: express.RequestHandler = (req, _, next) => {
-    // /healthz|/healthz/ needs to be excluded otherwise health checks will make
-    // it look like code-server is always in use.
-    if (!/^\/healthz\/?$/.test(req.url)) {
+    // /healthz|/healthz/ and /api/health need to be excluded otherwise health
+    // checks will make it look like code-server is always in use.
+    if (!/^\/healthz\/?$/.test(req.url) && !/^\/api\/health\/?$/.test(req.url)) {
       // NOTE@jsjoeio - intentionally not awaiting the .beat() call here because
       // we don't want to slow down the request.
       heart.beat()
@@ -154,6 +154,8 @@ export const register = async (
 
   app.router.use("/healthz", health.router)
   app.wsRouter.use("/healthz", health.wsRouter.router)
+
+  app.router.use("/api/health", health.apiRouter)
 
   if (args.auth === AuthType.Password) {
     app.router.use("/login", login.router)
