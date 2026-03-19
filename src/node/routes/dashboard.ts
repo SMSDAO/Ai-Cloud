@@ -5,6 +5,7 @@ import { RateLimiter } from "limiter"
 import * as path from "path"
 import { rootPath } from "../constants"
 import { ensureAuthenticated, replaceTemplates } from "../http"
+import { requireRole } from "../middleware/rbac"
 
 /**
  * Serve an enterprise dashboard page, replacing template variables.
@@ -47,17 +48,17 @@ router.get("/", async (req, res) => {
 })
 
 /** User management (Admin view) */
-router.get("/users", async (req, res) => {
+router.get("/users", requireRole("admin"), async (req, res) => {
   res.send(await servePage(req, "admin.html"))
 })
 
 /** Admin dashboard */
-router.get("/admin", async (req, res) => {
+router.get("/admin", requireRole("admin"), async (req, res) => {
   res.send(await servePage(req, "admin.html"))
 })
 
 /** Developer dashboard */
-router.get("/developer", async (req, res) => {
+router.get("/developer", requireRole("developer"), async (req, res) => {
   res.send(await servePage(req, "developer.html"))
 })
 
