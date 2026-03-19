@@ -10,6 +10,16 @@ router.get("/", (req, res) => {
   })
 })
 
+export const apiRouter = Router()
+
+apiRouter.get("/", (_, res) => {
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  })
+})
+
 export const wsRouter = WsRouter()
 
 wsRouter.ws("/", async (req) => {

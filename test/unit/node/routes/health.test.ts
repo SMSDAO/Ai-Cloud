@@ -39,4 +39,18 @@ describe("health", () => {
     ws.terminate()
     expect(message).toStrictEqual({ event: "health", status: "expired", lastHeartbeat: 0 })
   })
+
+  it("/api/health", async () => {
+    codeServer = await integration.setup(["--auth=none"], "")
+    const before = Date.now()
+    const resp = await codeServer.fetch("/api/health")
+    const after = Date.now()
+    expect(resp.status).toBe(200)
+    const json = (await resp.json()) as { status: string; uptime: number; timestamp: number }
+    expect(json.status).toBe("ok")
+    expect(typeof json.uptime).toBe("number")
+    expect(json.uptime).toBeGreaterThan(0)
+    expect(json.timestamp).toBeGreaterThanOrEqual(before)
+    expect(json.timestamp).toBeLessThanOrEqual(after)
+  })
 })

@@ -1,6 +1,7 @@
 import { logger } from "@coder/logger"
 import { optionDescriptions, parse, readConfigFile, setDefaults, shouldOpenInExistingInstance } from "./cli"
 import { getVersionString, getVersionJsonString } from "./constants"
+import { validateEnv } from "./env"
 import { openInExistingInstance, runCodeServer, runCodeCli, shouldSpawnCliProcess } from "./main"
 import { isChild, wrapper } from "./wrapper"
 
@@ -20,6 +21,7 @@ async function entry(): Promise<void> {
   }
 
   const cliArgs = parse(process.argv.slice(2))
+  validateEnv()
   const configArgs = await readConfigFile(cliArgs.config)
   const args = await setDefaults(cliArgs, configArgs)
 
